@@ -14,6 +14,6 @@ func TestBucketLoggingService(t *testing.T) {
 }
 
 func initBoltBucketLoggingService(f influxdbtesting.BucketFields, t *testing.T) (influxdb.BucketService, string, func()) {
-	svc, s, closer := initBoltBucketService(f, t)
+	svc, s, closer := initInmemBucketService(f, t)
 	return tenant.NewBucketLogger(zaptest.NewLogger(t), svc), s, closer
 }

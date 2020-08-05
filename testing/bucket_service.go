@@ -732,6 +732,54 @@ func FindBuckets(
 			},
 		},
 		{
+			name: "find all buckets by after and limit",
+			fields: BucketFields{
+				Organizations: []*influxdb.Organization{
+					{
+						Name: "theorg",
+						ID:   MustIDBase16(orgOneID),
+					},
+				},
+				Buckets: []*influxdb.Bucket{
+					{
+						ID:    MustIDBase16(bucketOneID),
+						OrgID: MustIDBase16(orgOneID),
+						Name:  "abc",
+					},
+					{
+						ID:    MustIDBase16(bucketTwoID),
+						OrgID: MustIDBase16(orgOneID),
+						Name:  "def",
+					},
+					{
+						ID:    MustIDBase16(bucketThreeID),
+						OrgID: MustIDBase16(orgOneID),
+						Name:  "xyz",
+					},
+				},
+			},
+			args: args{
+				findOptions: influxdb.FindOptions{
+					After: idPtr(MustIDBase16(bucketOneID)),
+					Limit: 2,
+				},
+			},
+			wants: wants{
+				buckets: []*influxdb.Bucket{
+					{
+						ID:    MustIDBase16(bucketTwoID),
+						OrgID: MustIDBase16(orgOneID),
+						Name:  "def",
+					},
+					{
+						ID:    MustIDBase16(bucketThreeID),
+						OrgID: MustIDBase16(orgOneID),
+						Name:  "xyz",
+					},
+				},
+			},
+		},
+		{
 			name: "find all buckets by descending",
 			fields: BucketFields{
 				Organizations: []*influxdb.Organization{

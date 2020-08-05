@@ -10,11 +10,11 @@ import (
 	influxdbtesting "github.com/influxdata/influxdb/v2/testing"
 )
 
-func TestBoltBucketService(t *testing.T) {
-	influxdbtesting.BucketService(initBoltBucketService, t, influxdbtesting.WithoutHooks())
+func TestInmemBucketService(t *testing.T) {
+	influxdbtesting.BucketService(initInmemBucketService, t, influxdbtesting.WithoutHooks())
 }
 
-func initBoltBucketService(f influxdbtesting.BucketFields, t *testing.T) (influxdb.BucketService, string, func()) {
+func initInmemBucketService(f influxdbtesting.BucketFields, t *testing.T) (influxdb.BucketService, string, func()) {
 	s, closeBolt, err := NewTestInmemStore(t)
 	if err != nil {
 		t.Fatalf("failed to create new kv store: %v", err)
