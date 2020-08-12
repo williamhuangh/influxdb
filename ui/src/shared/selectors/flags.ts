@@ -17,6 +17,7 @@ export const OSS_FLAGS = {
   'notebook-panel--test-flux': false,
   disableDefaultTableSort: false,
   'notification-endpoint-telegram': false,
+  'notification-endpoint-teams': false,
 }
 
 export const CLOUD_FLAGS = {
@@ -35,6 +36,7 @@ export const CLOUD_FLAGS = {
   'notebook-panel--test-flux': false,
   disableDefaultTableSort: false,
   'notification-endpoint-telegram': false,
+  'notification-endpoint-teams': false,
 }
 
 export const activeFlags = (state: AppState): FlagMap => {
